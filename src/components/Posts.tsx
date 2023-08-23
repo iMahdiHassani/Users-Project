@@ -1,8 +1,10 @@
+import { useParams } from 'react-router-dom';
 import usePosts from '../hooks/usePosts'
 import Post from './PostCard'
 import Spinner from './Spinner';
 const Posts = () => {
-  const {data,isLoading}=usePosts();
+  const {id}=useParams()
+  const {data,isLoading}=usePosts(Number(id));
 
   if(isLoading) return <Spinner/>
   return (

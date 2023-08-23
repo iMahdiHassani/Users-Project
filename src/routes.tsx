@@ -1,17 +1,22 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from './pages/Layout';
 import UsersPage from './pages/UsersPage';
-import UserDetail from './pages/UserDetailPage';
 import PostPage from './pages/PostPage';
+import PostsPage from './pages/PostsPage';
+import AlbumsPage from './pages/AlbumsPage';
+import Photos from './components/photos';
 
 const router = createBrowserRouter([
+  { path: '/', element: <UsersPage /> },
   {
-    path: '/',
+    path: 'users/:id/',
     element: <Layout />,
     children: [
-      { index: true, element: <UsersPage /> },
-      { path: 'users/:id', element: <UserDetail /> },
+      { path: 'posts', element: <PostsPage /> },
+      { path: 'albums', element: <AlbumsPage /> },
       { path: 'posts/:id/comments', element: <PostPage /> },
+      { path: 'albums/:id/photos', element: <Photos /> },
+
     ],
   },
 ]);

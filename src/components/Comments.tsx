@@ -3,7 +3,8 @@ import useComments from '../hooks/useComments'
 import CommentBox from './CommentBox'
 import Spinner from './Spinner';
 const Comments = () => {
-  const {data,isLoading}=useComments();
+  const {id}=useParams()
+  const {data,isLoading}=useComments(Number(id));
   if(isLoading) return <Spinner/>
   return (
     <div className='flex flex-col gap-2'>

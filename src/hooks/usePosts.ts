@@ -2,12 +2,11 @@ import {useQuery} from '@tanstack/react-query';
 import APIClient from '../services/apiClient';
 import { Post } from '../entites/Post';
 
-const apiClient=new APIClient<Post>('/posts')
-const usePosts=()=>
-  useQuery({
-    queryKey:['posts'],
+const usePosts=(id:number)=>{
+  const apiClient=new APIClient<Post>(`users/${id}/posts`)
+  return useQuery({
+    queryKey:['posts',id],
     queryFn:apiClient.getAll,
-    staleTime:24*60*60*1000
 
-  })
+  })}
 export default usePosts;
