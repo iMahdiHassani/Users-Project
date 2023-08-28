@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom';
 import useDeletePost from '../hooks/useDeletePost';
 import { Post } from '../entites/Post';
+import Spinner from './Spinner';
 interface Props {
   post: Post;
 }
 
 const PostCard = ({ post }: Props) => {
-  const deletePost = useDeletePost(post.id);
+  const {mutate}=useDeletePost();
+  const handleDelete=(id:number)=>{
+    mutate(id)
+  }
   return (
     <div className="flex flex-col bg-white shadow-md rounded-lg p-3 gap-3">
       <Link to={post.id + '/comments'}>
@@ -18,8 +22,7 @@ const PostCard = ({ post }: Props) => {
           Edit
         </button>
         <button
-          disabled={deletePost.isLoading}
-          onClick={() => deletePost.mutate(post.id)}
+          onClick={() =>handleDelete(post.id)}
           className="focus:outline-none font-sans  text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
         >
           Delete

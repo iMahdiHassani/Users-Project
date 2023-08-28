@@ -4,7 +4,7 @@ import UsersPage from './pages/UsersPage';
 import PostPage from './pages/PostPage';
 import PostsPage from './pages/PostsPage';
 import AlbumsPage from './pages/AlbumsPage';
-import Photos from './components/photos';
+import Photos from './components/Photos';
 
 const router = createBrowserRouter([
   { path: '/', element: <UsersPage /> },
@@ -14,9 +14,13 @@ const router = createBrowserRouter([
     children: [
       { path: 'posts', element: <PostsPage /> },
       { path: 'albums', element: <AlbumsPage /> },
+    ],
+  },
+  {
+    path: 'users/:id/',
+    children: [
       { path: 'posts/:id/comments', element: <PostPage /> },
       { path: 'albums/:id/photos', element: <Photos /> },
-
     ],
   },
 ]);
